@@ -36,8 +36,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Frontend Mentor](https://www.frontendmentor.io/challenges/url-shortening-api-landing-page-2ce3ob-G/)
-- Live Site URL: [Github Pages](https://viphakorn.github.io/fem-shortly-url/)
+- Solution URL: [Frontend Mentor](https://www.frontendmentor.io/solutions/multistep-form-svelte-tailwindcss-DegqrCuyLi)
+- Live Site URL: [Github Pages](https://viphakorn.github.io/fem-multi-step-form/)
 
 ## My process
 
