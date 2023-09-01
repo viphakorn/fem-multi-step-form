@@ -32,7 +32,7 @@ interface FormData {
   name: string
   email: string
   phoneNumber: string
-  plan: "arcade" | "advance" | "pro"
+  plan: "Arcade" | "Advance" | "Pro"
   planLength: "monthly" | "yearly"
   isOnlineService: boolean
   isLargeStorage: boolean
@@ -43,7 +43,7 @@ export const formDataStore = writable<FormData>({
   name: "",
   email: "",
   phoneNumber: "",
-  plan: "arcade",
+  plan: "Arcade",
   planLength: "monthly",
   isOnlineService: false,
   isLargeStorage: false,

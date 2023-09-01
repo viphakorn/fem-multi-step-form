@@ -17,6 +17,16 @@
       }))
     })
   }
+
+  function handleSubmit(e: SubmitEvent) {
+    e.preventDefault()
+    if ($stepStore !== steps.length) return stepStore.goNextStep()
+    alert(`Form Submitted:
+  Name: ${$formDataStore.name}
+  Email: ${$formDataStore.email}
+  Phone Number: ${$formDataStore.phoneNumber}
+    `)
+  }
 </script>
 
 <main class="relative flex min-h-screen flex-col">
@@ -46,7 +56,7 @@
           {/each}
         </ol>
       </nav>
-      <div class="flex grow flex-col">
+      <form class="flex grow flex-col" on:submit={handleSubmit}>
         <div class="relative z-10 mx-4 mb-6 mt-[-72px] space-y-4 rounded-[10px] bg-white p-6 md:m-0 md:space-y-6 md:p-0 md:px-[84px] md:py-[42px]">
           {#if $stepStore === 1}<StepOne />{/if}
           {#if $stepStore === 2}<StepTwo />{/if}
@@ -56,13 +66,13 @@
         </div>
         <div class="mt-auto flex min-h-[70px] w-full items-center justify-between gap-4 bg-white p-4 mb-safe {$stepStore === 5 ? 'hidden' : ''} md:px-[84px]">
           {#if $stepStore !== 1}
-            <button on:click={stepStore.goBackStep} class="text-[14px] font-medium text-cool-gray hover:text-marine-blue md:text-[1rem]">Go Back</button>
+            <button on:click={stepStore.goBackStep} type="button" class="text-[14px] font-medium text-cool-gray hover:text-marine-blue md:text-[1rem]">Go Back</button>
           {/if}
 
+         <p class="text-strawberry-red"> {$formDataStore.plan}</p>
+          <p class="text-purplish-blue">{$formDataStore.planLength}</p>
           <button
-            on:click={() => {
-              $stepStore === steps.length ? stepStore.goToStep(5) : stepStore.goNextStep()
-            }}
+            type="submit"
             disabled={$validations.name || $validations.email || $validations.phoneNumber}
             class="ml-auto inline-flex h-[40px] w-[96px] items-center justify-center rounded-[8px] text-[14px] font-medium text-magnolia md:h-[48px] md:w-[124px] md:text-[1rem]
             {$stepStore === steps.length ? 'bg-purplish-blue hover:bg-purplish-blue/80' : 'bg-marine-blue hover:bg-marine-blue/80'}"
@@ -70,7 +80,7 @@
             {$stepStore === steps.length ? "Confirm" : "Next Step"}
           </button>
         </div>
-      </div>
+      </form>
     </div>
   </div>
 </main>

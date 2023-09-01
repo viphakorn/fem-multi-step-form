@@ -1,5 +1,7 @@
 <script lang="ts">
-  import { isYearly, totalPrice } from "../lib/stores"
+  import { isYearly, totalPrice,formDataStore } from "../lib/stores"
+
+
 
   let activeIndex = -1
 
@@ -23,11 +25,12 @@
 </header>
 <div class="flex flex-col gap-3 md:flex-row md:gap-[18px]">
   {#each plans as plan, index}
-    <button
-      class="flex w-full cursor-pointer items-start gap-3 rounded-[10px] border border-light-gray p-4 hover:border-purplish-blue hover:bg-alabaster md:flex-col
-      {activeIndex === index ? 'border-purplish-blue bg-pastel-blue/10' : ''}"
-      on:click={() => (activeIndex = index)}
+    <label
+    for={plan.name.toLowerCase()}
+      class="flex w-full cursor-pointer items-start gap-3 rounded-[10px] border border-light-gray p-4 focus:border-purplish-blue focus:bg-alabaster md:flex-col
+      {$formDataStore.plan === plan.name ? 'border-purplish-blue bg-pastel-blue/10' : ''}"
     >
+    <input id={plan.name.toLowerCase()} type="radio" name={plan.name} value={plan.name} bind:group={$formDataStore.plan}  >
       <img src={plan.icon} alt={plan.name} />
       <div class="text-left md:mt-[30px] md:space-y-2">
         <h3 class="font-medium text-marine-blue">{plan.name}</h3>
@@ -38,12 +41,12 @@
           <p class="text-[14px] text-cool-gray">${plan.monthlyPrice}/mo</p>
         {/if}
       </div>
-    </button>
+    </label>
   {/each}
 </div>
 <div class="flex items-center justify-center gap-5 rounded-[10px] bg-alabaster p-3 md:!mt-[32px]">
   <span class="text-[14px] font-bold text-marine-blue">Monthly</span>
-  <button on:click={() => isYearly.update((bool) => !bool)} class="h-[20px] w-[40px] rounded-full bg-marine-blue p-[4px]">
+  <button type="button" on:click={()=> isYearly.update(prev => !prev)}  class="h-[20px] w-[40px] rounded-full bg-marine-blue p-[4px]">
     <span class="block h-[12px] w-[12px] rounded-full bg-white transition-transform duration-300 {$isYearly ? 'translate-x-[20px]' : ''}">
       <span class="sr-only">Switcher</span>
     </span>

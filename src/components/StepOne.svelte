@@ -20,6 +20,8 @@
     bind:value={$formDataStore.name}
     type="text"
     placeholder="e.g. Stephen King"
+    required
+
   />
 </div>
 <div class="flex flex-col">
@@ -36,6 +38,7 @@
     bind:value={$formDataStore.email}
     type="email"
     placeholder="e.g.stephenking@lorem.com"
+    required
   />
 </div>
 <div class="flex flex-col">
@@ -52,5 +55,7 @@
     type="tel"
     placeholder="e.g. +1 234 567 890"
     bind:value={$formDataStore.phoneNumber}
+    required
+
   />
 </div>
